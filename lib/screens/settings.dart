@@ -78,7 +78,7 @@ class Settings extends StatelessWidget {
                     context,
                     FadeInRoute(
                       routeName: Aboutus.route,
-                      page: DetailsScreen(product:createproduct()),
+                      page: DetailsScreen(product:products[0]),
                     ),
                   );
                 },
@@ -207,14 +207,4 @@ class Settings extends StatelessWidget {
     );
   }
 
-  Product createproduct() {
-    Product product=new Product(id: 2,
-        title: "Premium",
-        price: 234,
-        size: 280,
-        description: dummyText,
-        image: 'assets/images/credit-card.png',
-        color: Color(0xFFD3A984));
-    return product;
-  }
 }

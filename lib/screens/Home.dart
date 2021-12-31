@@ -21,6 +21,7 @@ import 'package:kidsapp/screens/login.dart';
 import 'package:kidsapp/screens/quraan.dart';
 import 'package:kidsapp/screens/ramdanscreen.dart';
 import 'package:kidsapp/screens/salah.dart';
+import 'package:kidsapp/widgets/CheckSubscription.dart';
 import 'package:location/location.dart';
 
 import 'package:provider/provider.dart';
@@ -87,6 +88,17 @@ class _TypesState extends State<Home> with TickerProviderStateMixin {
       if (Provider.of<Userprovider>(context, listen: false).user.active ==
           false) {
         active = false;
+        // showDialog(
+        //    //  barrierDismissible: false, //
+        //     context: context,
+        //     builder: (_) {
+        //       return AlertDialog(
+        //           shape: RoundedRectangleBorder(
+        //               borderRadius:
+        //               BorderRadius.circular(
+        //                   15)),
+        //           content: CheckSubscription());
+        //     });
       }
       firstrun = false;
     });
@@ -124,9 +136,7 @@ class _TypesState extends State<Home> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    return !active
-        ? Scaffold(backgroundColor: Colors.white, body: Contactus())
-        : Directionality(
+         return Directionality(
             textDirection:
                 Provider.of<Lanprovider>(context, listen: false).isenglish
                     ? TextDirection.ltr

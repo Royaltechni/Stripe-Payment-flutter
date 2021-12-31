@@ -7,7 +7,9 @@ import 'package:kidsapp/models/db.dart';
 import 'package:kidsapp/providers/azkarprovider.dart';
 import 'package:kidsapp/providers/lanprovider.dart';
 import 'package:kidsapp/providers/networkprovider.dart';
+import 'package:kidsapp/providers/userprovider.dart';
 import 'package:kidsapp/screens/Home.dart';
+import 'package:kidsapp/widgets/CheckSubscription.dart';
 import 'package:kidsapp/widgets/cheaklogin.dart';
 import 'package:kidsapp/widgets/duadetails.dart';
 import 'package:kidsapp/widgets/navigation.dart';
@@ -148,6 +150,21 @@ class _DuaasState extends State<Duaas> {
 
                                 return GestureDetector(
                                   onTap: () async {
+                                    // added by youssef
+                                    if(Provider.of<Userprovider>(context, listen: false).user.active == false){
+                                      showDialog(
+                                        //  barrierDismissible: false, //
+                                          context: context,
+                                          builder: (_) {
+                                            return AlertDialog(
+                                                shape: RoundedRectangleBorder(
+                                                    borderRadius:
+                                                    BorderRadius.circular(
+                                                        15)),
+                                                content: CheckSubscription());
+                                          });
+                                      return;
+                                    }
                                     !Provider.of<Lanprovider>(context,
                                                 listen: false)
                                             .islogin
@@ -165,7 +182,7 @@ class _DuaasState extends State<Duaas> {
                                         : Navigator.pushNamed(
                                             context, Duadetails.route,
                                             arguments: azakar);
-                                  },
+                                    },
                                   child: Container(
                                     height:
                                         getDeviceType() == 'phone' ? 190 : 292,

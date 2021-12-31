@@ -52,7 +52,7 @@ class AddToCart extends StatelessWidget {
     );
     await dialog.show();
     var response = await StripeService.payWithNewCard(
-        amount: '${product.price}',
+        amount: '${product.price*100}',
         currency: 'USD'
     );
    await dialog.hide();

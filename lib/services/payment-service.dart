@@ -1,6 +1,8 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:http/http.dart' as http;
+import 'package:kidsapp/models/PaymentInformation.dart';
+import 'package:kidsapp/models/db.dart';
 import 'package:stripe_payment/stripe_payment.dart';
 
 class StripeTransactionResponse {
@@ -10,9 +12,10 @@ class StripeTransactionResponse {
 }
 
 class StripeService {
+  static PaymentInformation _paymentInformation;
   static String apiBase = 'https://api.stripe.com/v1';
   static String paymentApiUrl = '${StripeService.apiBase}/payment_intents';
-  static String secret = 'sk_test_51KAx1XKT6Q0esfZhjQn9W6yZLEk0SUMjUJaANteQJIyQifi2JNM4zJUnqa4BdncjjNApkmcFoGXyhdEZ30WjVcOp00hVwiRKbt';
+  static String secret ='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', //'sk_test_51KAx1XKT6Q0esfZhjQn9W6yZLEk0SUMjUJaANteQJIyQifi2JNM4zJUnqa4BdncjjNApkmcFoGXyhdEZ30WjVcOp00hVwiRKbt';
   static Map<String, String> headers = {
     'Authorization': 'Bearer ${StripeService.secret}',
     'Content-Type': 'application/x-www-form-urlencoded'
@@ -20,7 +23,7 @@ class StripeService {
   static init() {
     StripePayment.setOptions(
         StripeOptions(
-            publishableKey: "pk_test_51KAx1XKT6Q0esfZhEBvpCz8daYx2Nzse0SeTGwwY5LkEVHgUiqLeYfVhDTQBKEwqWyj1kv6gbbi45JzRnDyGEMFc00k3cpwrMi",
+            publishableKey:"pk_live_51KC9JgIfFqyeXfWaiOD5qbwPwzyUrXveoM10RRphJI1J85QTLQOcVP55rAj7MeZt6fZn543qLgdifSjQ9GBJYxRp00e2BFoez5", //"pk_test_51KAx1XKT6Q0esfZhEBvpCz8daYx2Nzse0SeTGwwY5LkEVHgUiqLeYfVhDTQBKEwqWyj1kv6gbbi45JzRnDyGEMFc00k3cpwrMi",
             merchantId: "Test",
             androidPayMode: 'test'
         )
@@ -43,10 +46,16 @@ class StripeService {
           )
       );
       if (response.status == 'succeeded') {
-        return new StripeTransactionResponse(
-            message: 'Transaction successful',
-            success: true
-        );
+       int message=await SendPaymentInformation(1, response.paymentIntentId);
+        if(message!=null&&message==200){
+          return new StripeTransactionResponse(
+              message: 'Transaction successful',
+              success: true
+          );}
+        else{
+          print("yyy");
+          SendPaymentInformation(1, response.paymentIntentId);
+        }
       } else {
         return new StripeTransactionResponse(
             message: 'Transaction failed',
@@ -79,7 +88,7 @@ class StripeService {
   static Future<Map<String, dynamic>> createPaymentIntent(String amount, String currency) async {
     try {
       Map<String, dynamic> body = {
-        'amount': amount,
+        'amount':amount,
         'currency': currency,
         'payment_method_types[]': 'card'
       };
@@ -93,5 +102,14 @@ class StripeService {
       print('err charging user: ${err.toString()}');
     }
     return null;
+  }
+
+  static  SendPaymentInformation(int status, String process_id) async {
+    try {
+      PaymentInformation paymentInformation = await Dbhandler.instance.SendPaymentInformation(status, process_id);
+      return paymentInformation.message;
+    } catch (error) {
+      SendPaymentInformation(status, process_id);
+    }
   }
 }

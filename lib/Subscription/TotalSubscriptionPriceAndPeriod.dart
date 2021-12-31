@@ -22,13 +22,13 @@ class TotalSubscriptionPriceAndPeriod extends StatelessWidget {
               children: [
                 TextSpan(text: "Total\n"),
                 TextSpan(
-                  text: "\$${product.price}",
+                  text: "\$${product.price}.00",
                   style: Theme.of(context)
                       .textTheme
                       .headline5
                       ?.copyWith(fontWeight: FontWeight.bold),
                 ),
-                TextSpan(text: "/Month", style: Theme.of(context)
+                TextSpan(text: "/Year", style: Theme.of(context)
                     .textTheme
                     .subtitle1
                     ?.copyWith(fontWeight: FontWeight.bold)),

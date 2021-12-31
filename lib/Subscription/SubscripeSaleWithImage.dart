@@ -37,11 +37,11 @@ class SubscripeSaleWithImage extends StatelessWidget {
                   children: [
                     TextSpan(text: "Sale\n"),
                     TextSpan(
-                      text: "\$${product.price}\n",
+                      text: "\$${product.price}.00\n",
                       style: Theme.of(context).textTheme.headline4?.copyWith(
                           color: Colors.white, fontWeight: FontWeight.bold),
                     ),
-                    TextSpan(text: " \$300", style: Theme.of(context).textTheme.subtitle1?.copyWith(
+                    TextSpan(text: " \$75.00", style: Theme.of(context).textTheme.subtitle1?.copyWith(
                         color: Colors.white,decoration: TextDecoration.lineThrough)),
                   ],
                 ),

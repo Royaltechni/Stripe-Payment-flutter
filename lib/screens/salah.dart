@@ -14,6 +14,7 @@ import 'package:kidsapp/screens/isha.dart';
 import 'package:kidsapp/screens/maghrib.dart';
 import 'package:kidsapp/screens/thuhr.dart';
 import 'package:kidsapp/screens/Home.dart';
+import 'package:kidsapp/widgets/CheckSubscription.dart';
 import 'package:kidsapp/widgets/cheaklogin.dart';
 import 'package:kidsapp/widgets/navigation.dart';
 import 'package:page_transition/page_transition.dart';
@@ -302,6 +303,21 @@ class _SalahState extends State<Salah> {
                                     Expanded(
                                       child: GestureDetector(
                                         onTap: () async {
+                                          //added by youssef
+                                          if(Provider.of<Userprovider>(context, listen: false).user.active == false){
+                                            showDialog(
+                                              //  barrierDismissible: false, //
+                                                context: context,
+                                                builder: (_) {
+                                                  return AlertDialog(
+                                                      shape: RoundedRectangleBorder(
+                                                          borderRadius:
+                                                          BorderRadius.circular(
+                                                              15)),
+                                                      content: CheckSubscription());
+                                                });
+                                            return;
+                                          }
                                           !Provider.of<Lanprovider>(context,
                                                       listen: false)
                                                   .islogin
@@ -405,6 +421,21 @@ class _SalahState extends State<Salah> {
                                     Expanded(
                                       child: GestureDetector(
                                         onTap: ()async {
+                                          //added by youssef
+                                          if(Provider.of<Userprovider>(context, listen: false).user.active == false){
+                                            showDialog(
+                                              //  barrierDismissible: false, //
+                                                context: context,
+                                                builder: (_) {
+                                                  return AlertDialog(
+                                                      shape: RoundedRectangleBorder(
+                                                          borderRadius:
+                                                          BorderRadius.circular(
+                                                              15)),
+                                                      content: CheckSubscription());
+                                                });
+                                            return;
+                                          }
                                                !Provider.of<Lanprovider>(context,
                                                       listen: false)
                                                   .islogin
@@ -520,6 +551,21 @@ class _SalahState extends State<Salah> {
                                     Expanded(
                                       child: GestureDetector(
                                         onTap: ()async {
+                                          //added by youssef
+                                          if(Provider.of<Userprovider>(context, listen: false).user.active == false){
+                                            showDialog(
+                                              //  barrierDismissible: false, //
+                                                context: context,
+                                                builder: (_) {
+                                                  return AlertDialog(
+                                                      shape: RoundedRectangleBorder(
+                                                          borderRadius:
+                                                          BorderRadius.circular(
+                                                              15)),
+                                                      content: CheckSubscription());
+                                                });
+                                            return;
+                                          }
                                                !Provider.of<Lanprovider>(context,
                                                       listen: false)
                                                   .islogin
@@ -625,6 +671,21 @@ class _SalahState extends State<Salah> {
                                     Expanded(
                                       child: GestureDetector(
                                         onTap: ()async {
+                                          //added by youssef
+                                          if(Provider.of<Userprovider>(context, listen: false).user.active == false){
+                                            showDialog(
+                                              //  barrierDismissible: false, //
+                                                context: context,
+                                                builder: (_) {
+                                                  return AlertDialog(
+                                                      shape: RoundedRectangleBorder(
+                                                          borderRadius:
+                                                          BorderRadius.circular(
+                                                              15)),
+                                                      content: CheckSubscription());
+                                                });
+                                            return;
+                                          }
                                                !Provider.of<Lanprovider>(context,
                                                       listen: false)
                                                   .islogin
@@ -736,6 +797,21 @@ class _SalahState extends State<Salah> {
                                 child: Center(
                                   child: GestureDetector(
                                     onTap: () async{
+                                      //added by youssef
+                                      if(Provider.of<Userprovider>(context, listen: false).user.active == false){
+                                        showDialog(
+                                          //  barrierDismissible: false, //
+                                            context: context,
+                                            builder: (_) {
+                                              return AlertDialog(
+                                                  shape: RoundedRectangleBorder(
+                                                      borderRadius:
+                                                      BorderRadius.circular(
+                                                          15)),
+                                                  content: CheckSubscription());
+                                            });
+                                        return;
+                                      }
                                            !Provider.of<Lanprovider>(context,
                                                       listen: false)
                                                   .islogin

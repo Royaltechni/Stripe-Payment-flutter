@@ -6,7 +6,9 @@ import 'package:kidsapp/models/dialyhadith.dart';
 import 'package:kidsapp/providers/hadithprovider.dart';
 import 'package:kidsapp/providers/lanprovider.dart';
 import 'package:kidsapp/providers/networkprovider.dart';
+import 'package:kidsapp/providers/userprovider.dart';
 import 'package:kidsapp/screens/dialyhadith.dart';
+import 'package:kidsapp/widgets/CheckSubscription.dart';
 import 'package:kidsapp/widgets/cheaklogin.dart';
 import 'package:kidsapp/widgets/record.dart';
 import 'package:kidsapp/widgets/navigation.dart';
@@ -295,6 +297,21 @@ class _HadithsectionState extends State<Hadithsection> {
                                                       .hadiths
                                                       .id
                                                   : distinctIds[index].id;
+                                          //added by youssef
+                                          if(Provider.of<Userprovider>(context, listen: false).user.active == false){
+                                            showDialog(
+                                              //  barrierDismissible: false, //
+                                                context: context,
+                                                builder: (_) {
+                                                  return AlertDialog(
+                                                      shape: RoundedRectangleBorder(
+                                                          borderRadius:
+                                                          BorderRadius.circular(
+                                                              15)),
+                                                      content: CheckSubscription());
+                                                });
+                                            return;
+                                          }
                                           !Provider.of<Lanprovider>(context,
                                                       listen: false)
                                                   .islogin
@@ -621,6 +638,21 @@ class _HadithsectionState extends State<Hadithsection> {
                                                                 AudioRecorder
                                                                         .dialy =
                                                                     true;
+                                                                //added by youssef
+                                                                if(Provider.of<Userprovider>(context, listen: false).user.active == false){
+                                                                  showDialog(
+                                                                    //  barrierDismissible: false, //
+                                                                      context: context,
+                                                                      builder: (_) {
+                                                                        return AlertDialog(
+                                                                            shape: RoundedRectangleBorder(
+                                                                                borderRadius:
+                                                                                BorderRadius.circular(
+                                                                                    15)),
+                                                                            content: CheckSubscription());
+                                                                      });
+                                                                  return;
+                                                                }
                                                                 !Provider.of<Lanprovider>(
                                                                             context,
                                                                             listen:
@@ -636,7 +668,7 @@ class _HadithsectionState extends State<Hadithsection> {
                                                                               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                                                                               content: Cheaklogin());
                                                                         })
-                                                                    : !Provider.of<Lanprovider>(context, listen: false)
+                                                                    :!Provider.of<Lanprovider>(context, listen: false)
                                                                             .islogin
                                                                         ? await showDialog(
                                                                             //  barrierDismissible: false, //

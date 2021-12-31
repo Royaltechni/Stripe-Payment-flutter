@@ -12,6 +12,7 @@ import 'package:kidsapp/models/Hadithbyid.dart';
 
 import 'package:kidsapp/models/Homedata.dart';
 import 'package:kidsapp/models/Hosnasave.dart';
+import 'package:kidsapp/models/PaymentInformation.dart';
 import 'package:kidsapp/models/Salahsummry.dart';
 import 'package:kidsapp/models/Top_student.dart';
 import 'package:kidsapp/models/ayaaudio.dart';
@@ -830,5 +831,22 @@ class Dbhandler {
 
     print(response.data);
     return Active.fromJson(response.data);
+  }
+  Future<PaymentInformation> SendPaymentInformation(int status,String process_id) async {
+    String url = '$mainurl/storePayment';
+    final String tokenn = Userprovider.sd;
+
+    _dio.options.headers["Authorization"] = "Bearer $tokenn";
+    _dio.options.headers["Accept"] = "application/json";
+    Response response = await _dio.post(
+      url,
+      data: {'status': status ,'process_id': process_id},
+    );
+
+    final int statusCode = response.statusCode;
+    if (statusCode < 200 || statusCode > 400 || json == null) {
+      throw new Exception("Error while fetching data");
+    }
+    return PaymentInformation.fromJson(response.data);
   }
 }

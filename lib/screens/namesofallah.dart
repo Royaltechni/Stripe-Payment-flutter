@@ -11,6 +11,8 @@ import 'package:kidsapp/models/db.dart';
 import 'package:kidsapp/providers/Namesofallah.dart';
 import 'package:kidsapp/providers/lanprovider.dart';
 import 'package:kidsapp/providers/networkprovider.dart';
+import 'package:kidsapp/providers/userprovider.dart';
+import 'package:kidsapp/widgets/CheckSubscription.dart';
 import 'package:kidsapp/widgets/cheaklogin.dart';
 import 'package:kidsapp/widgets/namesofallahrecord.dart';
 import 'package:kidsapp/widgets/navigation.dart';
@@ -248,6 +250,21 @@ class _NamesofallahState extends State<Namesofallah> {
                               ),
                               GestureDetector(
                                 onTap: () async {
+                                  //added by youssef
+                                  if(Provider.of<Userprovider>(context, listen: false).user.active == false){
+                                    showDialog(
+                                      //  barrierDismissible: false, //
+                                        context: context,
+                                        builder: (_) {
+                                          return AlertDialog(
+                                              shape: RoundedRectangleBorder(
+                                                  borderRadius:
+                                                  BorderRadius.circular(
+                                                      15)),
+                                              content: CheckSubscription());
+                                        });
+                                    return;
+                                  }
                                   !Provider.of<Lanprovider>(context,
                                               listen: false)
                                           .islogin
@@ -308,6 +325,22 @@ class _NamesofallahState extends State<Namesofallah> {
                                             (BuildContext context, int index) {
                                           return GestureDetector(
                                             onTap: () async {
+                                              //added by youssef
+                                              if(Provider.of<Userprovider>(context, listen: false).user.active == false){
+                                                showDialog(
+                                                  //  barrierDismissible: false, //
+                                                    context: context,
+                                                    builder: (_) {
+                                                      return AlertDialog(
+                                                          shape: RoundedRectangleBorder(
+                                                              borderRadius:
+                                                              BorderRadius.circular(
+                                                                  15)),
+                                                          content: CheckSubscription());
+                                                    });
+                                                return;
+                                              }
+
                                               !Provider.of<Lanprovider>(context,
                                                           listen: false)
                                                       .islogin
@@ -390,6 +423,21 @@ class _NamesofallahState extends State<Namesofallah> {
                                                                 .primaryColor,
                                                             onChanged: (bool
                                                                 newValue) async {
+                                                              //added by youssef
+                                                              if(Provider.of<Userprovider>(context, listen: false).user.active == false){
+                                                                showDialog(
+                                                                  //  barrierDismissible: false, //
+                                                                    context: context,
+                                                                    builder: (_) {
+                                                                      return AlertDialog(
+                                                                          shape: RoundedRectangleBorder(
+                                                                              borderRadius:
+                                                                              BorderRadius.circular(
+                                                                                  15)),
+                                                                          content: CheckSubscription());
+                                                                    });
+                                                                return;
+                                                              }
                                                               !Provider.of<Lanprovider>(
                                                                           context,
                                                                           listen:

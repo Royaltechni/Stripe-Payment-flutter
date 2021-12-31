@@ -3,6 +3,7 @@ import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hijri/hijri_calendar.dart';
 import 'package:kidsapp/models/Homedata.dart';
+import 'package:kidsapp/models/PaymentInformation.dart';
 import 'package:kidsapp/models/Salahsummry.dart';
 import 'package:kidsapp/models/Top_student.dart';
 import 'package:kidsapp/models/cheakactive.dart';
@@ -34,7 +35,7 @@ class Userprovider with ChangeNotifier {
   Active user;
   bool active = true;
   bool role = false;
-
+  PaymentInformation payment_information;
   Future<Score> fetchscore() async {
     try {
       score = await Dbhandler.instance.getscore();

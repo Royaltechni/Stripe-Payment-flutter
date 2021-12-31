@@ -6,8 +6,10 @@ import 'package:kidsapp/models/db.dart';
 import 'package:kidsapp/providers/lanprovider.dart';
 import 'package:kidsapp/providers/networkprovider.dart';
 import 'package:kidsapp/providers/quraanprovider.dart';
+import 'package:kidsapp/providers/userprovider.dart';
 import 'package:kidsapp/screens/soura.dart';
 import 'package:kidsapp/screens/sours.dart';
+import 'package:kidsapp/widgets/CheckSubscription.dart';
 import 'package:kidsapp/widgets/cheaklogin.dart';
 import 'package:kidsapp/widgets/navigation.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
@@ -178,6 +180,21 @@ class _QuraanState extends State<Quraan> {
                                           .islogin
                                       ? GestureDetector(
                                           onTap: () async {
+                                            //added by youssef
+                                            if(Provider.of<Userprovider>(context, listen: false).user.active == false){
+                                              showDialog(
+                                                //  barrierDismissible: false, //
+                                                  context: context,
+                                                  builder: (_) {
+                                                    return AlertDialog(
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                            BorderRadius.circular(
+                                                                15)),
+                                                        content: CheckSubscription());
+                                                  });
+                                              return;
+                                            }
                                             !Provider.of<Lanprovider>(context,
                                                         listen: false)
                                                     .islogin
@@ -228,6 +245,21 @@ class _QuraanState extends State<Quraan> {
                                           final List<int> arg = [
                                             sour[29 - index] + 1
                                           ];
+                                          //added by youssef
+                                          if(Provider.of<Userprovider>(context, listen: false).user.active == false){
+                                            showDialog(
+                                              //  barrierDismissible: false, //
+                                                context: context,
+                                                builder: (_) {
+                                                  return AlertDialog(
+                                                      shape: RoundedRectangleBorder(
+                                                          borderRadius:
+                                                          BorderRadius.circular(
+                                                              15)),
+                                                      content: CheckSubscription());
+                                                });
+                                            return;
+                                          }
                                           !Provider.of<Lanprovider>(context,
                                                       listen: false)
                                                   .islogin
@@ -552,6 +584,21 @@ class _QuraanState extends State<Quraan> {
                                                                     .levels[
                                                                         index]
                                                                     .level);
+                                                                //added by youssef
+                                                                if(Provider.of<Userprovider>(context, listen: false).user.active == false){
+                                                                  showDialog(
+                                                                    //  barrierDismissible: false, //
+                                                                      context: context,
+                                                                      builder: (_) {
+                                                                        return AlertDialog(
+                                                                            shape: RoundedRectangleBorder(
+                                                                                borderRadius:
+                                                                                BorderRadius.circular(
+                                                                                    15)),
+                                                                            content: CheckSubscription());
+                                                                      });
+                                                                  return;
+                                                                }
                                                                 !Provider.of<Lanprovider>(
                                                                             context,
                                                                             listen:
