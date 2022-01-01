@@ -15,7 +15,7 @@ class StripeService {
   static PaymentInformation _paymentInformation;
   static String apiBase = 'https://api.stripe.com/v1';
   static String paymentApiUrl = '${StripeService.apiBase}/payment_intents';
-  static String secret ='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', //'sk_test_51KAx1XKT6Q0esfZhjQn9W6yZLEk0SUMjUJaANteQJIyQifi2JNM4zJUnqa4BdncjjNApkmcFoGXyhdEZ30WjVcOp00hVwiRKbt';
+  static String secret ='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'; //'sk_test_51KAx1XKT6Q0esfZhjQn9W6yZLEk0SUMjUJaANteQJIyQifi2JNM4zJUnqa4BdncjjNApkmcFoGXyhdEZ30WjVcOp00hVwiRKbt';
   static Map<String, String> headers = {
     'Authorization': 'Bearer ${StripeService.secret}',
     'Content-Type': 'application/x-www-form-urlencoded'
